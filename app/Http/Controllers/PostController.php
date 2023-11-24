@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::with('posts')->paginate(5);
+        $posts = Post::with('user')->paginate(20);
 
-        return view('home', [
-            'title' => 'Home Aprend!',
-            'users' => $users
+        return view('posts', [
+            'title' => 'Lista de posts',
+            'posts' => $posts
         ]);
     }
 
@@ -39,9 +39,12 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        return view('post', [
+            'title' => 'Post',
+            'post' => $post
+        ]);   
     }
 
     /**

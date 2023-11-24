@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::with('posts')->paginate(5);
-
-        return view('home', [
-            'title' => 'Home Aprend!',
-            'users' => $users
-        ]);
+        dd('admin');
     }
 
     /**

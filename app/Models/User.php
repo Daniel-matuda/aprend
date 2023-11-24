@@ -64,5 +64,13 @@ class User extends Authenticatable
 
         $data['password'] = bcrypt($data['password']);
         return $this->create($data);
+
+    }
+
+    // relacionamento hasMany(), possibilita um User tem muitos Posts, ou seja um user PODE TER MUITOS posts.
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id');
     }
 }

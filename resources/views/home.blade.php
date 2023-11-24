@@ -11,7 +11,7 @@
       <div class="col-md-3 mb-3">
         <div class="card">
           <h4 class="card-header">
-            {{ $user->fullName }}
+            <a style="text-decoration: none" href="{{ route('user.show', $user->id) }}">{{ $user->fullName }}</a>
           </h4>
 
           <div class="card-body">
@@ -23,7 +23,7 @@
                 <button class="btn btn-danger btn-sm mb-2" type="submit">Deletar</button>
               </form>
 
-              {{-- <small>Criou {{ $user->posts->count() }} Objetivos estratégicos</small> --}}
+              <small>Criou {{ $user->posts->count() }} Posts </small>
             </div>
           </div>
         </div>

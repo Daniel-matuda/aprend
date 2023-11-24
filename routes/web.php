@@ -3,7 +3,10 @@
 // use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
 
 
@@ -14,7 +17,21 @@ Route::post('/user', [UserController::class, 'store'])->name('user.store');
 Route::get('/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
 Route::put('/password/{user}', [PasswordController::class, 'update'])->name('password.update');
-Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post');
+
+Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
+
+
+
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::post('login', [LoginController::class, 'store'])->name('login.store')->middleware('throttle:3');
+Route::get('logout', [LoginController::class, 'destroy'])->name('login.destroy');
+
+
+Route::get('admin', [AdminController::class, 'index'])->middleware('auth');
 
 
 

@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::with('posts')->paginate(5);
-
-        return view('home', [
-            'title' => 'Home Aprend!',
-            'users' => $users
+        return view('login', [
+            'title' => 'Login'
         ]);
     }
 
@@ -33,7 +31,24 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt([
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+            'is_admin' => 1
+        ], $request->filled('remember'))) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('admin');
+        }
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
     /**
@@ -63,8 +78,10 @@ class HomeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy()
     {
-        //
+        Auth::logout();
+
+        return back();
     }
 }
