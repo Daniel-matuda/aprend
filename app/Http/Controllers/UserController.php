@@ -28,7 +28,8 @@ class UserController extends Controller
             [       
                 'lastName' => 'Matuda',
                 'email' => 'danielmatudaoficial@gmail.com',
-                'password' => bcrypt('123')
+                'password' => bcrypt('123'),
+                'is_admin' => true
             ]
         );
 
@@ -110,11 +111,13 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        // $user = User::destroy($id);
-
-        // dd($user->delete());
         $user->delete();
 
         return back();
     }
 }
+
+
+
+
+

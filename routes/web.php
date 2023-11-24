@@ -1,6 +1,5 @@
 <?php
 
-// use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -10,7 +9,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
 
 
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
@@ -18,12 +16,10 @@ Route::get('/user/edit/{user}', [UserController::class, 'edit'])->name('user.edi
 Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
 Route::put('/password/{user}', [PasswordController::class, 'update'])->name('password.update');
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post');
-
-Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
-
 
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -35,15 +31,12 @@ Route::get('admin', [AdminController::class, 'index'])->middleware('auth');
 
 
 
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
-// require __DIR__.'/auth.php';
+
+

@@ -17,4 +17,6 @@ class Post extends Model
         // Um post pertence a um user obrigatóriamente, por isso usamos belongsTo()
         return $this->belongsTo(User::class);
     }
+
+    protected $fillable = ['title', 'slug', 'content', 'user_id'];
 }
