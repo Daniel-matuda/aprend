@@ -2,7 +2,7 @@
 
 @section('content')
     
-  <h2>Update user</h2>
+  <h2>Atualizar dados Usuário</h2>
 
   @if (session()->has('updated_success'))
     <x-alert key="success" :message="session()->get('updated_success')" />
@@ -17,23 +17,23 @@
     @csrf
     @method('put')
 
-    <label for="firstName">FirstName</label>
-    <input type="text" class="form-control form-control-sm" name="firstName" placeholder="FirstName" value="{{ $user->firstName }}">
+    <label for="nome">Primeiro Nome</label>
+    <input type="text" class="form-control form-control-sm mb-2" name="firstName" placeholder="Primeiro nome" value="{{ $user->firstName }}">
     {{ $errors->first('firstName') }}
-    <label for="lastName">LastName</label>
-    <input type="text" class="form-control form-control-sm" name="lastName" placeholder="LastName" value="{{ $user->lastName }}">
+    <label for="lastName">Sobrenome</label>
+    <input type="text" class="form-control form-control-sm mb-2" name="lastName" placeholder="Sobrenome" value="{{ $user->lastName }}">
     {{ $errors->first('lastName') }}
     <label for="email">Email</label>
-    <input type="text" class="form-control form-control-sm" name="email" placeholder="Email" value="{{ $user->email }}">
+    <input type="text" class="form-control form-control-sm mb-2" name="email" placeholder="Email" value="{{ $user->email }}">
     {{ $errors->first('email') }}
 
-    <button type="submit" class="btn btn-success btn-sm">Save</button>
+    <button type="submit" class="btn btn-success btn-sm mb-2">Editar Usuário</button>
   
   </form>
 
   <hr>
 
-  <h2>Update password</h2>
+  <h2>Atualizar a senha do usuário</h2>
 
   @if (session()->has('password_success'))
   <x-alert key="success" :message="session()->get('password_success')" />
@@ -48,14 +48,14 @@
     @csrf
     @method('put')
 
-    <label for="firstName">Password</label>
-    <input type="text" class="form-control form-control-sm" name="password" placeholder="Password">
+    <label for="firstName">Senha</label>
+    <input type="text" class="form-control form-control-sm mb-2" name="password" placeholder="Senha">
     {{ $errors->first('password') }}
-    <label for="lastName">Confirmation</label>
-    <input type="text" class="form-control form-control-sm" name="password_confirmation" placeholder="Confirm password">
+    <label for="lastName">Confirme sua senha</label>
+    <input type="text" class="form-control form-control-sm mb-2" name="password_confirmation" placeholder="Confirme a senha">
     {{ $errors->first('password_confirmation') }}
 
-    <button type="submit" class="btn btn-success btn-sm">Save</button>
+    <button type="submit" class="btn btn-success btn-sm mb-2">Salvar a senha</button>
   
   </form>
 

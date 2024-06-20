@@ -2,7 +2,10 @@
 
 @section('content')
     
-  <h2>Create Post</h2>
+  <h2>Criar um Aula</h2>
+
+  <hr>
+
 
   @if (session()->has('success'))
     <x-alert key="success" :message="session()->get('success')" />
@@ -16,17 +19,20 @@
   
     @csrf
 
-    <label for="title">Title</label>
-    <input type="text" class="form-control form-control-sm" name="title" placeholder="Title">
+    <label for="title">Título da Aula</label>
+    <input type="text" class="form-control form-control-sm mb-2" name="title" placeholder="Digite o título da aula">
     {{ $errors->first('title') }}
-    <label for="slug">Slug</label>
-    <input type="text" class="form-control form-control-sm" name="slug" placeholder="Slug">
-    {{ $errors->first('lastName') }}
-    <label for="content">content</label>
-    <input type="text" class="form-control form-control-sm" name="content" placeholder="Content">
+    <label for="slug">Assunto</label>
+    <input type="text" class="form-control form-control-sm mb-2" name="slug" placeholder="Digite o assunto da aula">
+    {{ $errors->first('slug') }}
+    <label for="content">Digite o conteúdo da Aula</label>
+    <input type="text" class="form-control form-control-sm mb-2" name="content" placeholder="Digite o conteúdo da aula">
     {{ $errors->first('content') }}
+    <label for="user_id">Digite a matrícula do dono da Aula</label>
+    <input type="text" class="form-control form-control-sm mb-2" name="user_id" placeholder="Digite o número do criador da Aula">
+    {{ $errors->first('user_id') }}
 
-    <button type="submit" class="btn btn-success btn-sm">Save</button>
+    <button type="submit" class="btn btn-success btn-sm mb-2">Criar Aula</button>
   
   </form>
 

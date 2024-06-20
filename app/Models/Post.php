@@ -7,16 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
 
-    // Esta função abaixo tenta encontrar o NOME DO MÉTODO _ id, 
-    // ou seja ele vai ler o: user_id como chave estrangeira do Model Post.
+    protected $fillable = ['title', 'slug', 'content', 'user_id'];
+
+    use HasFactory;
 
     public function user()
     {
-        // Um post pertence a um user obrigatóriamente, por isso usamos belongsTo()
         return $this->belongsTo(User::class);
     }
 
-    protected $fillable = ['title', 'slug', 'content', 'user_id'];
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
+    }
+
+    public static function listAndSearch()
+    {
+        $search = request()->query('s');
+        return ($search) ?
+            Post::where('title', 'like', "%{$search}%")->orWhere('content', 'like', "%{$search}%")->with('user')->paginate(20):
+            Post::with('user')->paginate(20);
+    }
+
 }

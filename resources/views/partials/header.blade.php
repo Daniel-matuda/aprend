@@ -7,19 +7,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+          <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Usuários</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('user.create') }}">Create User</a>
+          <a class="nav-link" href="{{ route('user.create') }}">Criar um Usuário</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('posts') }}">Posts</a>
+          <a class="nav-link" href="{{ route('posts') }}">Aulas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('login') }}">Login</a>
+          <a class="nav-link" href="{{ route('login') }}">Faça Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Gerenciar posts</a>
+          <a class="nav-link" href="{{ route('post.create') }}">Criar Aula</a>
         </li>
 
         <li class="nav-item">
@@ -34,8 +34,8 @@
 
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="d-flex" method="get" action="{{ route('posts') }}">
+        <input class="form-control me-2" type="search" placeholder="Search" name="s" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

@@ -9,6 +9,18 @@
       </div>
       <div class="card-body">
         <p style="font-family: 'Poppins', sans-serif; font-size: 1rem;">{{ $post->content }}</p>
+
+        <hr>
+
+        <h4>Tags:</h4>
+
+        @forelse ($post->tags as $tag)
+            <a href="{{ route('tag.show', $tag->id) }}">{{ $tag->name }}</a>
+        @empty
+          <p style="font-family: 'Poppins', sans-serif; font-size: 1rem;">Nenhuma Tag cadastrada para esse post</p>
+        @endforelse
+
+
       </div>
     </div>
   </div>
